@@ -4,12 +4,15 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js"
+    "test": "node index.js"
   },
   "author": "Oleg Bedrin",
   "license": "ISC",
   "dependencies": {
     "ethers": "^4.0.41",
     "express": "^4.17.1"
+  },
+  "engines": {
+    "node": "10.x"
   }
 }
