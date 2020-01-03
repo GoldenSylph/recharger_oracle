@@ -5,7 +5,7 @@ const utils = require('ethers/utils');
 
 let provider = ethers.getDefaultProvider("homestead");
 const app = express();
-const port = const PORT = process.env.PORT || 5000;
+const port = process.env.PORT || 5000;
 
 app.get('/favicon.ico', (req, res) => res.status(204));
 
