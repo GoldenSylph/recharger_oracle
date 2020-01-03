@@ -8,6 +8,8 @@ const port = 3000;
 
 app.get('/favicon.ico', (req, res) => res.status(204));
 
+app.get('/', (req, res) => res.send('Recharger oracle is online'));
+
 app.get('/:txHash', (req, res) => {
   let responseJson = { txFee: -1 };
   console.log('Trying tx hash:', req.params.txHash);
