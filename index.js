@@ -1,10 +1,11 @@
+console.log('Starting oracle...');
 const express = require('express');
 const ethers = require('ethers');
 const utils = require('ethers/utils');
 
 let provider = ethers.getDefaultProvider("homestead");
 const app = express();
-const port = 3000;
+const port = const PORT = process.env.PORT || 5000;
 
 app.get('/favicon.ico', (req, res) => res.status(204));
 
