@@ -12,7 +12,7 @@ app.get('/favicon.ico', (req, res) => res.status(204));
 app.get('/', (req, res) => res.send('Recharger oracle is online'));
 
 app.get('/:txHash', (req, res) => {
-  let responseJson = { txFee: -1 };
+  let responseJson = { txInfo: -1 };
   console.log('Trying tx hash:', req.params.txHash);
   provider.getTransactionReceipt(req.params.txHash)
     .then((receipt) => {
@@ -20,7 +20,7 @@ app.get('/:txHash', (req, res) => {
       provider.getTransaction(receipt.transactionHash)
         .then((response) => {
           console.log('Got tx gas price:', response.gasPrice.toString())
-          responseJson.txFee = receipt.gasUsed.mul(response.gasPrice).toString();
+          responseJson.txInfo = response.from + "_" + receipt.gasUsed.mul(response.gasPrice).toString();
           res.json(responseJson);
         })
         .catch((error) => {
