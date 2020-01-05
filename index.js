@@ -12,7 +12,7 @@ app.get('/favicon.ico', (req, res) => res.status(204));
 app.get('/', (req, res) => res.send('Recharger oracle is online'));
 
 app.get('/:txHash', (req, res) => {
-  let responseJson = { txInfo: "0x0000000000000000000000000000000000000000_-1" };
+  let responseJson = { txInfo: "0x0000000000000000000000000000000000000000_0" };
   console.log('Trying tx hash:', req.params.txHash);
   provider.getTransactionReceipt(req.params.txHash)
     .then((receipt) => {
