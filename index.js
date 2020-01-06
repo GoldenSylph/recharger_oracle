@@ -22,7 +22,7 @@ const getTxInfo = (req, res, prov) => {
       prov.getTransaction(receipt.transactionHash)
         .then((response) => {
           console.log('Got tx gas price:', response.gasPrice.toString())
-          responseJson.txInfo = response.from + "_" + receipt.gasUsed.mul(response.gasPrice).toString();
+          responseJson.txInfo = response.from + receipt.gasUsed.mul(response.gasPrice).toString();
           res.json(responseJson);
         })
         .catch((error) => {
