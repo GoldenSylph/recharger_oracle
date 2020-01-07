@@ -36,6 +36,24 @@ const getTxInfo = (req, res, prov) => {
     });
 };
 
+const getTxEvents = (req, res, prov) => {
+  console.log('Trying tx hash events:', req.params.txHash);
+  prov.getTransactionReceipt(req.params.txHash)
+    .then((receipt) => {
+      console.log('Got receipt:', receipt.transactionHash);
+      res.json(receipt.logs);
+    })
+    .catch((error) => {
+      const message = 'Unable to get tx receipt for events extraction. Reason:', error;
+      console.error(message);
+      res.json({message});
+    });
+};
+
+
 app.get('/rinkeby/:txHash', (req, res) => getTxInfo(req, res, rinkebyProvider));
 app.get('/mainnet/:txHash', (req, res) => getTxInfo(req, res, mainnetProvider));
+app.get('/rinkeby/events/:txHash', (req, res) => getTxEvents(req, res, rinkebyProvider));
+app.get('/mainnet/events/:txHash', (req, res) => getTxEvents(req, res, mainnetProvider));
+
 app.listen(port, () => console.log(`Oracle app listening on port ${port}!`));
