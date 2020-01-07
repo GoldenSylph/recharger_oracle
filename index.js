@@ -44,7 +44,7 @@ const getTxEvents = (req, res, prov) => {
       res.json(receipt.logs);
     })
     .catch((error) => {
-      const message = 'Unable to get tx receipt for events extraction. Reason:', error;
+      const message = 'Unable to get tx receipt for events extraction. Reason:' + error;
       console.error(message);
       res.json({message});
     });
