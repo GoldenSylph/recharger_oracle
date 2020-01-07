@@ -41,6 +41,17 @@ const getTxEvents = (req, res, prov) => {
   prov.getTransactionReceipt(req.params.txHash)
     .then((receipt) => {
       console.log('Got receipt:', receipt.transactionHash);
+      for (i = 0; i < receipt.logs.length; i++) {
+        try {
+          receipt.logs[i].decoded = ethers.utils.defaultAbiCoder.decode(
+            ['uint256', 'uint256'],
+            receipt.logs[i].data
+          );
+        } catch (err) {
+          continue;
+        }
+      }
+
       res.json(receipt.logs);
     })
     .catch((error) => {
